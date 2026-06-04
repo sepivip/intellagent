@@ -1,5 +1,5 @@
 /* ============================================================================
-   IntellAgent — main.js
+   IntellAgent - main.js
    Progressive-enhancement form handling for Web3Forms.
    Submits via fetch() (no redirect), so the single screen holds. Implements
    client validation, loading / success / error states, and a honeypot guard.
@@ -64,7 +64,7 @@
 
   function setLoading(on) {
     if (on) {
-      submitBtn.style.minWidth = submitBtn.offsetWidth + 'px'; // freeze width — no jump
+      submitBtn.style.minWidth = submitBtn.offsetWidth + 'px'; // freeze width - no jump
       submitBtn.disabled = true;
       submitBtn.setAttribute('aria-busy', 'true');
       label.textContent = 'Sending…';
@@ -101,7 +101,7 @@
     });
     if (firstInvalid) { firstInvalid.focus(); return; }
 
-    // 2. honeypot — a bot filled the hidden field; fake success, send nothing
+    // 2. honeypot - a bot filled the hidden field; fake success, send nothing
     if (form.elements.botcheck && form.elements.botcheck.checked) {
       showSuccess();
       return;
@@ -136,12 +136,12 @@
         } else {
           setLoading(false);
           showFormError((r.data && r.data.message) ||
-            'Something went wrong — please try again in a moment.');
+            'Something went wrong - please try again in a moment.');
         }
       })
       .catch(function () {
         setLoading(false);
-        showFormError('Network error — check your connection and try again.');
+        showFormError('Network error - check your connection and try again.');
       });
   });
 })();

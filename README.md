@@ -1,13 +1,13 @@
-# IntellAgent — intellagent.us
+# IntellAgent - intellagent.us
 
 A single-screen landing page for **IntellAgent**, an AI-adoption advisory
-(automations, workflows, agents, training — advisory-led). Brand-first, strict
+(automations, workflows, agents, training - advisory-led). Brand-first, strict
 monochrome, built as a static site for **GitHub Pages**.
 
 The visual design system is documented in **[DESIGN.md](DESIGN.md)** in the
 [google-labs-code/design.md](https://github.com/google-labs-code/design.md)
 format (machine-readable tokens + rationale). It was derived from the design
-language of the Microsoft Surface RTX Spark Dev Box page — monochrome, uppercase
+language of the Microsoft Surface RTX Spark Dev Box page - monochrome, uppercase
 monospace display (IBM Plex Mono), light humanist sans (IBM Plex Sans), square
 corners, generous negative space.
 
@@ -18,10 +18,10 @@ corners, generous negative space.
 | `index.html` | The page (semantic, accessible). |
 | `styles.css` | All styles. CSS variables mirror the tokens in `DESIGN.md`. |
 | `main.js` | Form submission (Web3Forms via `fetch()`), validation, loading/success/error states. |
-| `DESIGN.md` | The design system — source of truth for colors, type, spacing, components. |
+| `DESIGN.md` | The design system - source of truth for colors, type, spacing, components. |
 | `favicon.svg` · `robots.txt` · `.nojekyll` · `CNAME` | Static-site plumbing. |
 
-## Before it goes live — set the Web3Forms key
+## Before it goes live - set the Web3Forms key
 
 The intake form posts to [Web3Forms](https://web3forms.com) (no backend needed).
 
@@ -31,7 +31,7 @@ The intake form posts to [Web3Forms](https://web3forms.com) (no backend needed).
 3. In your Web3Forms dashboard, **restrict the key to `intellagent.us`** (domain
    allowlist) so the public key can't be abused elsewhere.
 
-> The repo is **public**, so the access key is visible in the HTML — that's by
+> The repo is **public**, so the access key is visible in the HTML - that's by
 > design. It only allows submitting *this* form to your pre-set address; the
 > recipient email lives only in the Web3Forms dashboard (set when you created the
 > key) and **never appears in the repo or on the page**. Spam is mitigated by the honeypot
@@ -41,7 +41,7 @@ The intake form posts to [Web3Forms](https://web3forms.com) (no backend needed).
 
 1. Create a **public** repo (e.g. `intellagent`) and push these files to `main`.
 2. **Settings → Pages →** Source: *Deploy from a branch*, Branch: `main` / `/ (root)`.
-3. For the custom domain (`intellagent.us`) — do this once your DNS is ready:
+3. For the custom domain (`intellagent.us`) - do this once your DNS is ready:
    - At your DNS provider, point the apex domain to GitHub Pages with these
      **A records**: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
      `185.199.111.153` (and/or an `AAAA`/`ALIAS` per GitHub's current docs).
@@ -51,7 +51,7 @@ The intake form posts to [Web3Forms](https://web3forms.com) (no backend needed).
 
 ## Local preview
 
-It's plain static files — open `index.html` directly, or serve the folder:
+It's plain static files - open `index.html` directly, or serve the folder:
 
 ```bash
 python -m http.server 8000   # then visit http://localhost:8000

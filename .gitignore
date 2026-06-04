@@ -2,15 +2,18 @@
 .DS_Store
 Thumbs.db
 
-# Session / tooling artifacts — not part of the site
+# Session / tooling artifacts - not part of the site
 .remember/
 .superpowers/
 .wf/
 .playwright-mcp/
 .claude/
 
-# Reference capture of the Microsoft page — used for design only, do not republish
+# Reference capture of the Microsoft page - used for design only, do not republish
 ms-surface-fullpage.jpeg
+
+# Local animation preview lab (scratch - not part of the shipped site)
+.lab/
 
 # Node (only if tooling is run locally)
 node_modules/

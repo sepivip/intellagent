@@ -1,5 +1,5 @@
 /* ============================================================================
-   IntellAgent — styles.css
+   IntellAgent - styles.css
    Tokens are lifted verbatim from DESIGN.md (google-labs-code/design.md format).
    Strict monochrome, brutalist-lite: pure-black canvas, uppercase IBM Plex Mono
    display, light IBM Plex Sans body, square corners, generous whitespace.
@@ -191,7 +191,7 @@ input[aria-invalid="true"] {
   min-height: 0;
 }
 .field-error:empty { display: none; }
-.field-error::before { content: "— "; color: var(--muted); }
+.field-error::before { content: "- "; color: var(--muted); }
 
 /* --- CTA ------------------------------------------------------------------ */
 .cta {

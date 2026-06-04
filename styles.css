@@ -1,0 +1,301 @@
+/* ============================================================================
+   IntellAgent — styles.css
+   Tokens are lifted verbatim from DESIGN.md (google-labs-code/design.md format).
+   Strict monochrome, brutalist-lite: pure-black canvas, uppercase IBM Plex Mono
+   display, light IBM Plex Sans body, square corners, generous whitespace.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* colors */
+  --background: #000000;
+  --surface:    #FFFFFF;
+  --primary:    #FFFFFF;
+  --ink-on-dark:  #F2F2F2;
+  --ink-on-light: #262626;
+  --muted:      #919191;
+  --accent:     #0B5FD8; /* opt-in only; unused in the canonical monochrome build */
+  --ring:       var(--primary);
+
+  /* type */
+  --mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  --sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* spacing scale (4px-based) */
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  --maxw: 34rem;        /* 544px content measure */
+  --input-h: 3rem;      /* 48px touch target */
+
+  /* motion */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in:  cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* --- reset ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body, h1, p { margin: 0; }
+html, body { min-height: 100%; }
+
+body {
+  background: var(--background);
+  color: var(--ink-on-dark);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  min-height: 100vh;
+  min-height: 100svh; /* avoids mobile browser-chrome jump */
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 4vh, 2rem) clamp(1.5rem, 5vw, 2rem);
+}
+
+/* --- header / wordmark ---------------------------------------------------- */
+.header {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.wordmark {
+  display: inline-block;
+  font-family: var(--mono);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  line-height: 1;
+  color: var(--primary);
+}
+
+/* --- main column ---------------------------------------------------------- */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-block: clamp(2rem, 6vh, 4rem);
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--muted);
+  margin-bottom: clamp(1rem, 2.5vh, 1.5rem);
+}
+
+.headline {
+  font-family: var(--mono);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.75rem, 6vw, 2.25rem);
+  line-height: 1.02;
+  color: var(--primary);
+  margin-bottom: clamp(1rem, 3vh, 1.5rem);
+}
+
+.lead {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(1.125rem, 3.2vw, 1.375rem);
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: var(--ink-on-dark);
+  max-width: 32rem;
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
+.lead em { font-style: normal; color: var(--primary); }
+
+/* --- form ----------------------------------------------------------------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.field { display: flex; flex-direction: column; gap: var(--space-xs); }
+
+label {
+  font-family: var(--mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.req { color: var(--ink-on-dark); }
+
+input[type="text"],
+input[type="email"] {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-on-dark);
+  caret-color: var(--ink-on-dark);
+  background: var(--ink-on-light);
+  border: 1px solid transparent;
+  border-radius: 0;
+  height: var(--input-h);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  outline: none;
+  transition: box-shadow 120ms var(--ease-out), border-color 120ms var(--ease-out);
+}
+input::placeholder { color: #8a8a8a; opacity: 1; } /* dimmer than input text */
+
+/* keep autofill on-brand (dark field, light text) instead of browser white/yellow */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ink-on-dark);
+  -webkit-box-shadow: 0 0 0 1000px var(--ink-on-light) inset;
+  caret-color: var(--ink-on-dark);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+input:focus-visible {
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+input[aria-invalid="true"] {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.field-error {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-on-dark);
+  min-height: 0;
+}
+.field-error:empty { display: none; }
+.field-error::before { content: "— "; color: var(--muted); }
+
+/* --- CTA ------------------------------------------------------------------ */
+.cta {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+  font-family: var(--mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: var(--ink-on-light);
+  background: var(--surface);
+  border: 1px solid var(--surface);
+  border-radius: 0;
+  /* optical: a hair less top than bottom so caps sit centered */
+  padding: 0.85rem var(--space-lg) 0.95rem;
+  min-height: 2.75rem; /* 44px hit target */
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out),
+              color 150ms var(--ease-out),
+              border-color 150ms var(--ease-out),
+              transform 80ms var(--ease-out);
+}
+@media (hover: hover) {
+  .cta:hover:not(:disabled) {
+    background: var(--background);
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+}
+.cta:active:not(:disabled) { transform: translateY(1px); }
+.cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+.cta:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* --- form-level error ----------------------------------------------------- */
+.form-error {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-on-dark);
+  border-left: 2px solid var(--primary);
+  padding: var(--space-sm) var(--space-md);
+}
+.form-error[hidden] { display: none; }
+
+/* --- reassurance ---------------------------------------------------------- */
+.reassure {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: var(--space-lg);
+}
+
+/* --- success -------------------------------------------------------------- */
+.success { outline: none; }
+.success__title {
+  font-family: var(--mono);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  line-height: 1.05;
+  color: var(--primary);
+  margin-bottom: var(--space-sm);
+}
+.success__body {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  color: var(--ink-on-dark);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .success:not([hidden]) {
+    animation: reveal 450ms var(--ease-out) both;
+  }
+}
+
+/* --- honeypot (off-screen, not display:none, so bots still fill it) ------- */
+.hp {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+
+/* --- entrance reveal (text only; the form stays instantly usable) --------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: reveal 550ms var(--ease-out) forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+  @keyframes reveal { to { opacity: 1; transform: none; } }
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .main { padding-block: clamp(3rem, 8vh, 4rem); }
+}

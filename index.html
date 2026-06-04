@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IntellAgent — Adopt AI with intent</title>
+  <meta name="description" content="IntellAgent helps companies adopt AI with intent — automations, workflows, and agents, led by advisory. Start the conversation." />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="IntellAgent — Adopt AI with intent" />
+  <meta property="og:description" content="We help companies put AI to work — automations, workflows, and agents, grounded in advisory." />
+  <meta property="og:url" content="https://intellagent.us/" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://intellagent.us/" />
+
+  <!-- Fonts: IBM Plex Mono (display) + IBM Plex Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <span class="wordmark reveal" style="--delay:0ms">IntellAgent</span>
+  </header>
+
+  <main class="main">
+    <p class="eyebrow reveal" style="--delay:80ms">AI adoption, advised.</p>
+    <h1 class="headline reveal" style="--delay:140ms">Adopt AI with intent.</h1>
+    <p class="lead reveal" style="--delay:200ms">
+      We help companies put AI to work — automations, workflows, and agents,
+      grounded in advisory from the first line of code. We map where it pays off,
+      build what proves out, and train your team to <em>own it</em>.
+    </p>
+
+    <form id="form" class="form" novalidate aria-label="Start the conversation with IntellAgent">
+      <div class="field">
+        <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+        <input id="name" name="name" type="text" autocomplete="name" spellcheck="false"
+               required aria-required="true" placeholder="Your name"
+               aria-describedby="name-error" />
+        <p class="field-error" id="name-error" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="email">Work email <span class="req" aria-hidden="true">*</span></label>
+        <input id="email" name="email" type="email" autocomplete="email" spellcheck="false"
+               required aria-required="true" placeholder="you@company.com"
+               aria-describedby="email-error" />
+        <p class="field-error" id="email-error" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="message">What you want to explore</label>
+        <input id="message" name="message" type="text" autocomplete="off"
+               placeholder="Optional — a line on where you are with AI" />
+      </div>
+
+      <!-- Web3Forms config (public by design; recipient is set in the Web3Forms dashboard) -->
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+      <input type="hidden" name="subject" value="New IntellAgent inquiry" />
+      <input type="hidden" name="from_name" value="IntellAgent" />
+      <!-- Honeypot: hidden from people, bots fill it; Web3Forms drops the submission -->
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+
+      <button type="submit" class="cta" id="submit">
+        <span class="cta__label">Start the conversation</span>
+      </button>
+    </form>
+
+    <p class="reassure" id="reassure">We reply within one business day. No spam, no list-selling.</p>
+
+    <div class="success" id="success" role="status" tabindex="-1" hidden>
+      <p class="success__title">Received.</p>
+      <p class="success__body">We&rsquo;ll be in touch within one business day.</p>
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

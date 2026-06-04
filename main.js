@@ -62,6 +62,21 @@
     });
   });
 
+  // interest pills are a required radio group ("Not sure" is a valid pick)
+  var interestError = document.getElementById('interest-error');
+  function interestValue() {
+    return form.elements.interest ? form.elements.interest.value : '';
+  }
+  Array.prototype.forEach.call(
+    document.querySelectorAll('input[name="interest"]'),
+    function (r) {
+      r.addEventListener('change', function () {
+        if (interestError) interestError.textContent = '';
+        hideFormError();
+      });
+    }
+  );
+
   function setLoading(on) {
     if (on) {
       submitBtn.style.minWidth = submitBtn.offsetWidth + 'px'; // freeze width - no jump
@@ -99,6 +114,13 @@
         clearFieldError(f);
       }
     });
+
+    // interest pills are required ("Not sure" is a valid pick)
+    if (!interestValue()) {
+      if (interestError) interestError.textContent = 'Pick what you want to explore.';
+      if (!firstInvalid) firstInvalid = document.querySelector('input[name="interest"]');
+    }
+
     if (firstInvalid) { firstInvalid.focus(); return; }
 
     // 2. honeypot - a bot filled the hidden field; fake success, send nothing

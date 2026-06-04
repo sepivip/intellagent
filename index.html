@@ -58,8 +58,8 @@
         <p class="field-error" id="email-error" role="alert"></p>
       </div>
 
-      <fieldset class="seg">
-        <legend>What you want to explore <span class="opt">(optional)</span></legend>
+      <fieldset class="seg" role="radiogroup" aria-required="true" aria-describedby="interest-error">
+        <legend>What you want to explore <span class="req" aria-hidden="true">*</span></legend>
         <div class="seg-grid">
           <input type="radio" name="interest" id="int-advisory" value="advisory" class="sr-only" />
           <label for="int-advisory">Advisory</label>
@@ -74,7 +74,14 @@
           <input type="radio" name="interest" id="int-notsure" value="not-sure" class="sr-only" />
           <label for="int-notsure">Not sure</label>
         </div>
+        <p class="field-error" id="interest-error" role="alert"></p>
       </fieldset>
+
+      <div class="field">
+        <label for="message">Tell us more <span class="opt">(optional)</span></label>
+        <textarea id="message" name="message" rows="2" autocomplete="off"
+                  placeholder="Where you are with AI, a timeline, or a specific question"></textarea>
+      </div>
 
       <!-- Web3Forms config (public by design; recipient is set in the Web3Forms dashboard) -->
       <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />

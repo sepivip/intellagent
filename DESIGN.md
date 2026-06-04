@@ -38,9 +38,9 @@ typography:
     letterSpacing: 0.01em
   lead:
     fontFamily: "'IBM Plex Sans', sans-serif"
-    fontSize: 1.375rem
+    fontSize: 1.125rem
     fontWeight: 300
-    lineHeight: 1.4
+    lineHeight: 1.55
     letterSpacing: 0.01em
   body:
     fontFamily: "'IBM Plex Sans', sans-serif"
@@ -318,10 +318,10 @@ Token roles map directly to the single-screen page:
   wide 0.12em tracking, muted gray.
 - **headline** - H1 equivalent for any short declarative statement, e.g.
   `ADOPT AI WITH INTENT.`: mono uppercase, 300, line-height 1.0, period-stopped.
-- **lead** - the one positioning paragraph: humanist sans, 300, 1.375rem (22px),
-  ~1.4 line-height for an airy feel. The only prose block on the page, tightened
-  to land at three lines or fewer on the 34rem (544px) measure so the no-scroll
-  budget holds: *We help companies put AI to work - automations, workflows, and
+- **lead** - the one positioning paragraph: humanist sans, 300, 1.125rem (18px),
+  ~1.55 line-height for calm, readable prose (deliberately not hero-sized - the
+  uppercase mono headline carries the emphasis). The only prose block on the page,
+  kept short on the 34rem (544px) measure: *We help companies put AI to work - automations, workflows, and
   agents, grounded in advisory from the first line of code. We map where it pays
   off, build what proves out, and train your team to own it.*
 - **body** - base UI/sans text at 1rem, 300, line-height 1.5.
@@ -334,7 +334,7 @@ Token roles map directly to the single-screen page:
 
 All sizes are rem against a 16px root. Reference px letter-spacing is converted
 to em so it scales: H1 0.32px @ 32px ≈ 0.01em (headline); body 0.32px @ 16px =
-0.02em; lead ~0.2px @ 22px ≈ 0.01em; uppercase mono kickers and labels are opened
+0.02em; lead ~0.2px @ 18px ≈ 0.01em; uppercase mono kickers and labels are opened
 to 0.08-0.12em per all-caps convention. Both `fontFamily` stacks end in a generic
 fallback (`monospace` / `sans-serif`) so the page degrades gracefully before web
 fonts load. Typography tokens carry no color - color is applied at the component
@@ -373,11 +373,13 @@ compresses gracefully on short heights rather than forcing a scroll.
   (~660px usable) keeps the wordmark, lead, two fields, and submit on one screen
   without scrolling; `spacing.2xl` on mobile.
 
-**No-scroll budget.** The single-screen contract is enforced, not assumed: the
-visible form is capped at two to three fields (see Components), the lead is kept
-to ≤3 lines at 22px, and the clamped padding/gaps shrink on short viewports.
-This keeps the composition inside ~470px of usable content height on a common
-laptop.
+**No-scroll budget.** The single screen is the target, not an absolute: the
+visible form is four fields (see Components) - Name, Work email, the required
+interest pills, and an optional free-text note - and the lead is kept short at
+18px with clamped padding/gaps that shrink on short viewports. The first three
+blocks (wordmark, paragraph, the start of the form) hold without scrolling on a
+common laptop; with four fields the page may scroll a little on very short
+viewports, an accepted trade-off for richer, better-qualified intake.
 
 **Responsive behavior.** Single-column at every breakpoint - only the scale
 changes. Mobile (base, ≤~640px): full-width column inside `spacing.lg` gutters,
@@ -444,22 +446,25 @@ signalled by a square focus ring (white by default, or the opt-in `accent`)
 handled in CSS outside token color scope, so `inputFocus` retains the field's
 13.52:1 text pairing.
 
-**Default intake fields.** The canonical, low-friction field set is exactly
-three, with two required: **Name** (text, required), **Work email** (email,
-required), and **What you want to explore** (a single-select segmented control,
-optional). The third field is a native radio group (`name="interest"`) rendered
-as a 3x2 grid of square uppercase-mono pills - **Advisory / Agents / Automations
-/ Workflows / Training / Not sure** - so the menu of offerings is visible at a
-glance and the field doubles as a quiet capability statement. The selected pill
-uses the page's signature inversion (white plate, near-black text); the rest are
-recessed `inkOnLight` plates separated by 1px hairline seams. It stays optional
-(skippable), posts a single clean routing value to Web3Forms, and is built from
-native inputs (free keyboard + screen-reader support, no JS, the standard white
-focus ring). The legend carries a persistent muted "(optional)" rather than
-relying on a placeholder. Anything beyond these three is opt-in and must be
-justified against the no-scroll budget; required fields stay at two. Plus the two hidden fields described in
-Build context (`access_key`, honeypot `botcheck`), which carry no visual or
-layout cost. There is **no separate form heading by default** - the lead
+**Default intake fields.** The field set is four, with three required: **Name**
+(text, required), **Work email** (email, required), **What you want to explore**
+(a required single-select segmented control), and **Tell us more** (an optional
+free-text note). The third field is a native radio group (`name="interest"`,
+`role="radiogroup"`, `aria-required`) rendered as a 3x2 grid of square
+uppercase-mono pills - **Advisory / Agents / Automations / Workflows / Training /
+Not sure** - so the menu of offerings is visible at a glance and the field
+doubles as a quiet capability statement. It is required, with **Not sure** as the
+no-friction escape hatch so no serious prospect is ever blocked. The selected
+pill uses the page's signature inversion (white plate, near-black text); the rest
+are recessed `inkOnLight` plates separated by 1px hairline seams. It posts a
+single clean routing value to Web3Forms and is built from native inputs (free
+keyboard + screen-reader support, no JS beyond the shared required-validation,
+the standard white focus ring). The fourth field, **Tell us more**, is an
+optional `textarea` (`name="message"`, persistent muted "(optional)" label, never
+placeholder-as-label) for free-form context, styled to match the recessed fields
+and vertically resizable. Required fields are validated inline (message stays
+optional). Plus the two hidden fields described in Build context (`access_key`,
+honeypot `botcheck`), which carry no visual or layout cost. There is **no separate form heading by default** - the lead
 paragraph flows straight into the fields, preserving the three-block contract
 (wordmark, paragraph, form). If a label-scale cue is wanted, it is at most a
 single `label`-token line on the first field, never a headline-scale block.
@@ -513,8 +518,9 @@ by the three `muted`-on-black components at 6.66:1.
   entirely.
 - Make the monochrome CTA hover a full inversion (black fill, white text, white
   hairline), not a sub-threshold tonal nudge.
-- Cap the visible form at three fields (Name, Work email, optional interest
-  selector), two required; submit via `fetch()` so the page never redirects.
+- Keep the visible form to four fields (Name, Work email, required interest
+  pills, optional free-text note), three required; submit via `fetch()` so the
+  page never redirects.
 - Write terse, confident, concrete copy; close on credibility, not novelty.
 - Keep the form low-friction: minimal required fields, no boxes or dividers.
 

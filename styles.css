@@ -64,6 +64,28 @@ body {
   padding: clamp(1.25rem, 4vh, 2rem) clamp(1.5rem, 5vw, 2rem);
 }
 
+/* --- animated background -------------------------------------------------- */
+/* WebGL dither field (bg.js) sits behind everything; scrim darkens the centre
+   so text stays readable; content is lifted above both. Solid black fallback. */
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  background: var(--background);
+}
+.bg-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(135% 110% at 50% 50%,
+    rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.38) 50%, rgba(0, 0, 0, 0) 100%);
+}
+.header, .main { position: relative; z-index: 1; }
+
 /* --- header / wordmark ---------------------------------------------------- */
 .header {
   width: 100%;

@@ -219,6 +219,16 @@ clean, credible inbox: the Web3Forms `access_key` hidden input, and a
 visually-hidden honeypot `botcheck` field (hidden via off-screen positioning, not
 `display:none` alone, so bots still fill it); hCaptcha is a noted future add.
 
+**Animated background.** A single full-bleed WebGL layer (`bg.js`, zero
+dependencies, ~3KB of GLSL) renders an ordered Bayer-4x4 dither over a slow,
+domain-warped fBM noise field - a monochrome halftone that flows behind the
+content. It is art-directed to stay darkest in the centre (a baked-in vignette
+plus a CSS radial scrim) so every line of text keeps its contrast. It animates
+for all visitors by brand-owner choice; under `prefers-reduced-motion` it runs
+at half speed rather than stopping. It degrades gracefully: no WebGL means the
+solid black canvas shows and the page is unaffected. Performance: device-pixel
+ratio is clamped to 2 and the loop pauses on a hidden tab.
+
 **Public repo & privacy.** The GitHub Pages repo is **public**, so the page
 contains no secrets and no contact email. Leads are routed by Web3Forms to a
 private recipient that is configured server-side in the Web3Forms dashboard,
@@ -386,8 +396,13 @@ no blurs, no layered cards, no raised surfaces. Depth is expressed only through
 "into" the pure-black canvas, and the inverted white CTA plate reads as the one
 element that comes "forward." Focus is communicated by a square focus ring (white
 in the canonical monochrome build, or the opt-in `accent` azure) and by the
-field's full width, never by a shadow. Keeping the z-axis empty is part of the
-brutalist-lite, cinematic restraint.
+field's full width, never by a shadow.
+
+The one z-axis layer is the animated WebGL dither background (see Build context),
+which sits *behind* everything on a single plane; a radial scrim between it and
+the content keeps the centre dark. It adds atmosphere, not stacked depth - the
+content layer itself stays flat. Keeping the z-axis otherwise empty is part of
+the brutalist-lite, cinematic restraint.
 
 ## Shapes
 

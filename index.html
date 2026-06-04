@@ -9,10 +9,21 @@
 
   <!-- Open Graph / social -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="IntellAgent" />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="IntellAgent - Adopt AI with intent" />
   <meta property="og:description" content="We help companies put AI to work - automations, workflows, and agents, grounded in advisory." />
   <meta property="og:url" content="https://intellagent.us/" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://intellagent.us/og-image.jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="IntellAgent - AI adoption advisory. Automations, workflows, agents, and advisory." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="IntellAgent - Adopt AI with intent" />
+  <meta name="twitter:description" content="We help companies put AI to work - automations, workflows, and agents, grounded in advisory." />
+  <meta name="twitter:image" content="https://intellagent.us/og-image.jpeg" />
+  <meta name="twitter:image:alt" content="IntellAgent - AI adoption advisory." />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://intellagent.us/" />
@@ -23,6 +34,23 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Structured data (helps search + LLMs understand the business) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "IntellAgent",
+    "url": "https://intellagent.us/",
+    "image": "https://intellagent.us/og-image.jpeg",
+    "logo": "https://intellagent.us/favicon.svg",
+    "slogan": "Adopt AI with intent.",
+    "description": "IntellAgent helps companies adopt AI with intent - automations, workflows, agents, and training, led by advisory. We map where AI pays off, build what proves out, and train your team to own it.",
+    "areaServed": "Worldwide",
+    "knowsAbout": ["AI adoption", "AI advisory", "automation", "workflow automation", "AI agents", "AI training", "AI strategy"],
+    "serviceType": ["AI advisory", "AI automation", "Workflow design", "AI agent development", "AI training and enablement"]
+  }
+  </script>
 </head>
 <body>
   <canvas id="bg" aria-hidden="true"></canvas>

@@ -1,0 +1,18 @@
+# IntellAgent
+
+> IntellAgent (intellagent.us) is an AI-adoption advisory that helps companies put AI to work - automations, workflows, agents, and training - led by advisory. We map where AI pays off, build what proves out, and train teams to own it.
+
+IntellAgent is a brand-first advisory practice. The website is a single page; engagements begin with a short intake form (name, work email, an area of interest, and an optional note), and we reply personally. Advisory is the primary offering.
+
+## Services
+- [Advisory](https://intellagent.us/): strategy and guidance for adopting AI with intent. The primary offering.
+- [Automations](https://intellagent.us/): removing manual, repetitive work with AI.
+- [Workflows](https://intellagent.us/): designing AI-assisted processes end to end.
+- [AI agents](https://intellagent.us/): building assistive and autonomous agents grounded in real workflows.
+- [Training and enablement](https://intellagent.us/): helping teams own the tools.
+
+## Contact
+- [Start the conversation](https://intellagent.us/): the intake form is on the homepage. No email is published; submissions are routed privately.
+
+## Notes
+- Single-page static site. All copy is original to IntellAgent.

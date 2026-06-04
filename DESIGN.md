@@ -242,6 +242,12 @@ on the page.
 All copy is original to IntellAgent; the reference informs the *design language*
 only.
 
+**Discoverability.** A branded 1200x630 Open Graph image (`og-image.jpeg`,
+rendered in this same dither + IBM Plex style) ships for social cards, wired via
+`og:*` / `twitter:summary_large_image` tags. SEO and LLM legibility are covered
+by `ProfessionalService` JSON-LD structured data, a `sitemap.xml`, a `robots.txt`
+pointing to it, and an `llms.txt` that summarizes the practice for AI agents.
+
 ## Colors
 
 IntellAgent runs on a strict monochrome ink system - no decorative color - so

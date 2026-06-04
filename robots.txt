@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://intellagent.us/sitemap.xml

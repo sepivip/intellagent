@@ -478,8 +478,9 @@ placed on a lighter surface.
 `#F2F2F2` on the black canvas (18.76:1) and brighten to pure `colors.primary`
 white (21:1) on hover - a quiet brightening, not a color shift. A single
 caption-scale reassurance line sits under the submit (it uses the existing
-`caption` token, so it adds no new structure): *We reply within one business day.
-No spam, no list-selling.* No email address or `mailto:` link is displayed - the
+`caption` token, so it adds no new structure): *We reply personally. No spam, no
+list-selling.* The copy stays deliberately general - no response-time promise, so
+nothing has to be kept on every lead. No email address or `mailto:` link is displayed - the
 form is the only contact path, and Web3Forms routes submissions privately to the
 server-side recipient.
 
@@ -493,11 +494,10 @@ by the three `muted`-on-black components at 6.66:1.
 
 - Submit (`button` / `buttonAccent`): `START THE CONVERSATION`
   (fallback `BOOK A BRIEFING`); in-progress `SENDING…`.
-- Success (replaces the form in-place): *Received. We'll be in touch within one
-  business day.*
+- Success (replaces the form in-place): *Received. We'll be in touch.*
 - Error fallback: *Something went wrong - please try again in a moment.*
-- Reassurance (`caption`, under submit): *We reply within one business day. No
-  spam, no list-selling.*
+- Reassurance (`caption`, under submit): *We reply personally. No spam, no
+  list-selling.*
 
 ## Dos and Donts
 

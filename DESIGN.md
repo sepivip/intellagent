@@ -446,9 +446,18 @@ handled in CSS outside token color scope, so `inputFocus` retains the field's
 
 **Default intake fields.** The canonical, low-friction field set is exactly
 three, with two required: **Name** (text, required), **Work email** (email,
-required), and **What you want to explore** (single-line text, optional).
-Anything beyond these is opt-in and must be justified against the no-scroll
-budget; required fields stay at two. Plus the two hidden fields described in
+required), and **What you want to explore** (a single-select segmented control,
+optional). The third field is a native radio group (`name="interest"`) rendered
+as a 3x2 grid of square uppercase-mono pills - **Advisory / Agents / Automations
+/ Workflows / Training / Not sure** - so the menu of offerings is visible at a
+glance and the field doubles as a quiet capability statement. The selected pill
+uses the page's signature inversion (white plate, near-black text); the rest are
+recessed `inkOnLight` plates separated by 1px hairline seams. It stays optional
+(skippable), posts a single clean routing value to Web3Forms, and is built from
+native inputs (free keyboard + screen-reader support, no JS, the standard white
+focus ring). The legend carries a persistent muted "(optional)" rather than
+relying on a placeholder. Anything beyond these three is opt-in and must be
+justified against the no-scroll budget; required fields stay at two. Plus the two hidden fields described in
 Build context (`access_key`, honeypot `botcheck`), which carry no visual or
 layout cost. There is **no separate form heading by default** - the lead
 paragraph flows straight into the fields, preserving the three-block contract
@@ -504,8 +513,8 @@ by the three `muted`-on-black components at 6.66:1.
   entirely.
 - Make the monochrome CTA hover a full inversion (black fill, white text, white
   hairline), not a sub-threshold tonal nudge.
-- Cap the visible form at three fields (Name, Work email, optional context), two
-  required; submit via `fetch()` so the page never redirects.
+- Cap the visible form at three fields (Name, Work email, optional interest
+  selector), two required; submit via `fetch()` so the page never redirects.
 - Write terse, confident, concrete copy; close on credibility, not novelty.
 - Keep the form low-friction: minimal required fields, no boxes or dividers.
 

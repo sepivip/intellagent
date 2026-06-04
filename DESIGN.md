@@ -211,9 +211,10 @@ filler. Every line earns its place on a one-screen page.
 
 **Build context.** A static site on GitHub Pages with plain HTML/CSS and tiny
 vanilla JS. The intake form submits via a vanilla `fetch()` POST (JSON,
-`Accept: application/json`) to `https://api.web3forms.com/submit`; on success the
-form node is replaced in-place with the success message, on failure the error
-fallback is shown - no page redirect, so the single-screen / no-second-page
+`Accept: application/json`) to `https://api.web3forms.com/submit`; on success a
+confirmation **modal dialog** opens (native `<dialog>`, focus-trapped, Esc/OK to
+dismiss), and dismissing it resets the form to a clean state; on failure an inline
+error is shown. No page redirect, so the single-screen / no-second-page
 constraint holds. Two hidden, zero-visual-footprint fields are required for a
 clean, credible inbox: the Web3Forms `access_key` hidden input, and a
 visually-hidden honeypot `botcheck` field (hidden via off-screen positioning, not
@@ -500,7 +501,8 @@ by the three `muted`-on-black components at 6.66:1.
 
 - Submit (`button` / `buttonAccent`): `START THE CONVERSATION`
   (fallback `BOOK A BRIEFING`); in-progress `SENDING…`.
-- Success (replaces the form in-place): *Received. We'll be in touch.*
+- Success (modal dialog; OK or Esc dismisses it and resets the form): *Received.
+  We'll be in touch.*
 - Error fallback: *Something went wrong - please try again in a moment.*
 - Reassurance (`caption`, under submit): *We reply personally. No spam, no
   list-selling.*
@@ -539,10 +541,10 @@ by the three `muted`-on-black components at 6.66:1.
 - Don't use filled pill buttons, rounded corners, drop shadows, or card
   elevation.
 - Don't place `muted` gray on white or `#262626` (it fails/borderlines AA).
-- Don't let the form grow past three visible fields or the lead past ~3 lines -
-  the no-scroll budget is load-bearing.
-- Don't wire the Web3Forms default redirect; always use the in-place
-  `fetch()` swap so the single screen holds.
+- Don't let the form grow past its four fields or bloat the lead - the no-scroll
+  budget is load-bearing.
+- Don't wire the Web3Forms default redirect; always submit via `fetch()` (no
+  redirect, confirmation shown in a modal) so the single screen holds.
 - Don't use hype words, exclamation points (beyond the headline period-stop), or
   emoji.
 - Don't carry over any trademark, product name, or third-party phrasing - all

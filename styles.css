@@ -44,6 +44,7 @@
 html { -webkit-text-size-adjust: 100%; }
 body, h1, p { margin: 0; }
 html, body { min-height: 100%; }
+[hidden] { display: none !important; } /* beats class rules like .form{display:flex} */
 
 body {
   background: var(--background);
@@ -190,11 +191,20 @@ input::placeholder { color: #8a8a8a; opacity: 1; } /* dimmer than input text */
 /* keep autofill on-brand (dark field, light text) instead of browser white/yellow */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--ink-on-dark);
-  -webkit-box-shadow: 0 0 0 1000px var(--ink-on-light) inset;
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--ink-on-dark) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--ink-on-light) inset !important;
+  box-shadow: 0 0 0 1000px var(--ink-on-light) inset !important;
   caret-color: var(--ink-on-dark);
-  transition: background-color 9999s ease-in-out 0s;
+  border: 1px solid transparent !important;
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+input:autofill,
+textarea:autofill {
+  -webkit-text-fill-color: var(--ink-on-dark);
+  box-shadow: 0 0 0 1000px var(--ink-on-light) inset;
 }
 
 input:focus-visible {
@@ -322,9 +332,22 @@ textarea:focus-visible { box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(
   margin-top: var(--space-lg);
 }
 
-/* --- success -------------------------------------------------------------- */
-.success { outline: none; }
-.success__title {
+/* --- success modal (native <dialog>) -------------------------------------- */
+.modal {
+  margin: auto;                 /* center in the viewport */
+  width: calc(100% - 3rem);
+  max-width: 30rem;
+  padding: clamp(2rem, 5vw, 3rem);
+  background: #0a0a0a;
+  color: var(--ink-on-dark);
+  border: 1px solid var(--surface);
+  border-radius: 0;
+}
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+.modal__title {
   font-family: var(--mono);
   font-weight: 300;
   text-transform: uppercase;
@@ -332,19 +355,46 @@ textarea:focus-visible { box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(
   font-size: clamp(1.5rem, 5vw, 2rem);
   line-height: 1.05;
   color: var(--primary);
-  margin-bottom: var(--space-sm);
+  margin: 0 0 var(--space-sm);
 }
-.success__body {
+.modal__body {
   font-family: var(--sans);
   font-weight: 300;
   font-size: 1.125rem;
   line-height: 1.4;
   color: var(--ink-on-dark);
+  margin: 0 0 var(--space-xl);
+}
+.modal__ok {
+  font-family: var(--mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: var(--ink-on-light);
+  background: var(--surface);
+  border: 1px solid var(--surface);
+  border-radius: 0;
+  padding: 0.8rem var(--space-xl) 0.9rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out),
+              border-color 150ms var(--ease-out), transform 80ms var(--ease-out);
+}
+@media (hover: hover) {
+  .modal__ok:hover { background: var(--background); color: var(--primary); border-color: var(--primary); }
+}
+.modal__ok:active { transform: translateY(1px); }
+.modal__ok:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #0a0a0a, 0 0 0 4px var(--ring);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .success:not([hidden]) {
-    animation: reveal 450ms var(--ease-out) both;
-  }
+  .modal[open] { animation: modalIn 220ms var(--ease-out); }
+  .modal[open]::backdrop { animation: modalFade 220ms var(--ease-out); }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(10px) scale(0.985); } to { opacity: 1; transform: none; } }
+  @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
 }
 
 /* --- honeypot (off-screen, not display:none, so bots still fill it) ------- */

@@ -92,11 +92,24 @@
   }
 
   function showSuccess() {
-    form.hidden = true;
-    if (reassure) reassure.hidden = true;
-    successEl.hidden = false;
-    successEl.focus();
+    setLoading(false);
+    if (typeof successEl.showModal === 'function') successEl.showModal();
+    else successEl.setAttribute('open', ''); // fallback for very old browsers
   }
+
+  // OK / Esc / backdrop -> close the modal and return to a fresh form
+  var okBtn = document.getElementById('success-ok');
+  if (okBtn) okBtn.addEventListener('click', function () {
+    if (typeof successEl.close === 'function') successEl.close();
+    else successEl.removeAttribute('open');
+  });
+  successEl.addEventListener('close', function () {
+    form.reset();
+    Object.keys(fields).forEach(function (k) { clearFieldError(fields[k]); });
+    if (interestError) interestError.textContent = '';
+    hideFormError();
+    setLoading(false);
+  });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();

@@ -127,10 +127,11 @@
 
     <p class="reassure" id="reassure">We reply personally. No spam, no list-selling.</p>
 
-    <div class="success" id="success" role="status" tabindex="-1" hidden>
-      <p class="success__title">Received.</p>
-      <p class="success__body">We&rsquo;ll be in touch.</p>
-    </div>
+    <dialog class="modal" id="success" aria-labelledby="success-title">
+      <p class="modal__title" id="success-title">Received.</p>
+      <p class="modal__body">We&rsquo;ll be in touch.</p>
+      <button type="button" class="modal__ok" id="success-ok" autofocus>OK</button>
+    </dialog>
   </main>
 
   <script src="main.js"></script>
